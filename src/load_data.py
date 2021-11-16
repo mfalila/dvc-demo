@@ -13,7 +13,7 @@ def load_and_save(config_path):
     #print(new_cols)
     raw_data_path = config["load_data"]["raw_dataset_csv"]
     #save processed data
-    df.to_csv(raw_data_path, sep= ",", index=False, header=new_cols)
+    df.to_csv(raw_data_path, sep=",", index=False, header=new_cols)
 
 
 
