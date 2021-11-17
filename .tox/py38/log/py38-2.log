@@ -1,0 +1,16 @@
+action: py38, msg: installpkg
+cwd: /mnt/e/venvs/dvc/simple_app/wineqve
+cmd: /mnt/e/venvs/dvc/simple_app/wineqve/.tox/py38/bin/python -m pip install --exists-action w .tox/.tmp/package/1/src-0.0.1.zip
+Processing ./.tox/.tmp/package/1/src-0.0.1.zip
+Building wheels for collected packages: src
+  Building wheel for src (setup.py): started
+  Building wheel for src (setup.py): finished with status 'done'
+  Created wheel for src: filename=src-0.0.1-py3-none-any.whl size=4256 sha256=0ec3484bdf20ce308d32564a8e63d35c4634036582a7549e17cd07aee7046838
+  Stored in directory: /home/sl202194/.cache/pip/wheels/df/c5/29/d5e4815beb86ce5bd7949c5c94f7a0ba0852a2c83163770616
+Successfully built src
+Installing collected packages: src
+  Attempting uninstall: src
+    Found existing installation: src 0.0.1
+    Not uninstalling src at /mnt/e/venvs/dvc/simple_app/wineqve, outside environment /mnt/e/venvs/dvc/simple_app/wineqve/.tox/py38
+    Can't uninstall 'src'. No files were found to uninstall.
+Successfully installed src-0.0.1
