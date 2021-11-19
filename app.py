@@ -40,9 +40,7 @@ def api_response(request): #this the api's response
         #pass response as a json response
         response = {"response": response}
         return response
-
-    #what to return incase of an error
-    except Exception as e:
+    except Exception as e:     #what to return incase of an error
         print(e)
         error = {"error": "Something went wrong! Try again"}
         return error
@@ -54,7 +52,7 @@ def index():
         try:
             if request.form:
                 data = dict(request.form).values()
-                data = [list(map(float,data))]
+                data = [list(map(float, data))]
                 response = predict(data)
                 return render_template("index.html", response=response)
 
@@ -65,6 +63,7 @@ def index():
         except Exception as e:
             print(e)
             error = {"error": "Something went wrong! Try again"}
+            error = {"error": e}
             return render_template("404.html", error=error)
     else:
         return render_template("index.html")
