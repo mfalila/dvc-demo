@@ -47,7 +47,7 @@ def train_and_evaluate(config_path):
                     l1_ratio=l1_ratio,
                     random_state=random_state)
 
-    lr.fit(train_x,train_y)
+    lr.fit(train_x, train_y)
 
     predicted_qualities = lr.predict(test_x)
 
@@ -58,7 +58,7 @@ def train_and_evaluate(config_path):
     print("  MAE: %s" % mae)
     print("  R2: %s" % r2)
 
-###########################SAVE METRICS AND HYPERPARAMS #######################
+    ###########################SAVE METRICS AND HYPERPARAMS #######################
     scores_file = config["reports"]["scores"]
     params_file = config["reports"]["params"]
 
@@ -68,7 +68,7 @@ def train_and_evaluate(config_path):
             "mae": mae,
             "r2": r2
         }
-        json.dump(scores, f, indent=4) #indent specified to keep code organized
+        json.dump(scores, f, indent=4)  # indent specified to keep code organized
 
     with open(params_file, "w") as f:
         params = {
@@ -77,15 +77,15 @@ def train_and_evaluate(config_path):
         }
         json.dump(params, f, indent=4)
 
-################################################################################
-
+    ################################################################################
 
     os.makedirs(model_dir, exist_ok=True)
     model_path = os.path.join(model_dir, "model.joblib")
 
     joblib.dump(lr, model_path)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
     parsed_args = args.parse_args()
