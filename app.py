@@ -1,22 +1,18 @@
-from flask import Flask, render_template, request, jsonify
 import os
-
-#import yaml
-#import joblib
-import numpy as np
+from flask import Flask, render_template, request, jsonify
 from prediction_service import prediction
 
 webapp_root = "webapp"
 
-#using os.path method to join paths
-static_dir = os.path.join(webapp_root,"static")
+# using os.path method to join paths
+static_dir = os.path.join(webapp_root, "static")
 template_dir = os.path.join(webapp_root, "templates")
-
 
 app = Flask(__name__,
             static_folder=static_dir,
             template_folder=template_dir
             )
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -26,7 +22,6 @@ def index():
                 dict_req = dict(request.form)
                 response = prediction.form_response(dict_req)
                 return render_template("index.html", response=response)
-
             elif request.json:
                 response = prediction.api_response(request.json)
                 return jsonify(response)
@@ -39,5 +34,6 @@ def index():
     else:
         return render_template("index.html")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

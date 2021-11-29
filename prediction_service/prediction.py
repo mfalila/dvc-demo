@@ -15,7 +15,7 @@ class NotInRange(Exception):
 
 
 class NotInCols(Exception):
-    def __init__(self, message="Not in cols"):
+    def __init__(self, message="Invalid columns"):
         self.message = message
         super().__init__(self.message)
 
@@ -73,22 +73,22 @@ def form_response(dict_request):
         return response
 
 
-def api_response(dict_request):
-    try:
-        if validate_input(dict_request):
-            data = np.array([list(dict_request.values())])
+def api_response(request):
+    if validate_input(request):
+        try:
+            data = np.array([list(request.values())])
             response = predict(data)
             response = {"response": response}
             return response
 
-    except NotInRange as e:
-        response = {"the_expected_range": get_schema(), "response": str(e)}
-        return response
+        except NotInRange as e:
+            response = {"the_expected_range": get_schema(), "response": str(e)}
+            return response
 
-    except NotInCols as e:
-        response = {"the_expected_cols": get_schema().keys(), "response": str(e)}
-        return response
+        except NotInCols as e:
+            response = {"the_expected_cols": get_schema().keys(), "response": str(e)}
+            return response
 
-    except Exception as e:
-        response = {"response": str(e)}
-        return response
+        except Exception as e:
+            response = {"response": str(e)}
+            return response
